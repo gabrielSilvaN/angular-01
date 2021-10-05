@@ -18,6 +18,10 @@ import { HomeComponent } from './component/view/home/home.component';
 import { HotelFormComponent } from './component/view/hotel/hotel-form/hotel-form.component';
 import { QuartoListComponent } from './component/view/quarto/quarto-list/quarto-list.component';
 import { QuartoFormComponent } from './component/view/quarto/quarto-form/quarto-form.component';
+import { HospedeListComponent } from './component/view/hospede/hospede-list/hospede-list.component';
+import { HospedeFormComponent } from './component/view/hospede/hospede-form/hospede-form.component';
+import { HospedagemListComponent } from './component/view/hospedagem/hospedagem-list/hospedagem-list.component';
+import { HospedagemFormComponent } from './component/view/hospedagem/hospedagem-form/hospedagem-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { QuartoFormComponent } from './component/view/quarto/quarto-form/quarto-
     HotelFormComponent,
     QuartoListComponent,
     QuartoFormComponent,
+    HospedeListComponent,
+    HospedeFormComponent,
+    HospedagemListComponent,
+    HospedagemFormComponent,
   ],
   imports: [
     BrowserModule,
