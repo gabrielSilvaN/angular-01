@@ -1,1 +1,28 @@
-<p>formulário hospedagem</p>
+<mat-card>
+    <mat-card-title>{{title}}</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Data de checkin" name="dtCheckin" [(ngModel)]="hospedagem.dtCheckin"
+                type="text">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Data de checkout" name="dtCheckout" [(ngModel)]="hospedagem.dtCheckout"
+                type="text">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Id do hospede" name="idHospede" [(ngModel)]="hospedagem.idHospede"
+                type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Id do quarto" name="idQuarto" [(ngModel)]="hospedagem.idQuarto" type="number">
+        </mat-form-field>
+
+    </form>
+
+    <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+    <button mat-raised-button color="warn" routerLink="/hoteis/">Cancelar</button>
+
+</mat-card>

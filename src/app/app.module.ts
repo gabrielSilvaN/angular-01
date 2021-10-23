@@ -31,6 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { HotelUpdateComponent } from './component/view/hotel/hotel-update/hotel-update.component';
 import { HospedeUpdateComponent } from './component/view/hospede/hospede-update/hospede-update.component';
+import { HospedagemUpdateComponent } from './component/view/hospedagem/hospedagem-update/hospedagem-update.component';
 
 import { ConfirmDeleteComponent } from './component/template/confirm-delete/confirm-delete.component';
 
@@ -52,6 +53,7 @@ import { ConfirmDeleteComponent } from './component/template/confirm-delete/conf
     HotelUpdateComponent,
     HospedeUpdateComponent,
     ConfirmDeleteComponent,
+    HospedagemUpdateComponent,
   ],
   imports: [
     BrowserModule,
