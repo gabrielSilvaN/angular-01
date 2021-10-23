@@ -22,6 +22,17 @@ import { HospedeListComponent } from './component/view/hospede/hospede-list/hosp
 import { HospedeFormComponent } from './component/view/hospede/hospede-form/hospede-form.component';
 import { HospedagemListComponent } from './component/view/hospedagem/hospedagem-list/hospedagem-list.component';
 import { HospedagemFormComponent } from './component/view/hospedagem/hospedagem-form/hospedagem-form.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { HotelUpdateComponent } from './component/view/hotel/hotel-update/hotel-update.component';
+import { HospedeUpdateComponent } from './component/view/hospede/hospede-update/hospede-update.component';
+
+import { ConfirmDeleteComponent } from './component/template/confirm-delete/confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +49,9 @@ import { HospedagemFormComponent } from './component/view/hospedagem/hospedagem-
     HospedeFormComponent,
     HospedagemListComponent,
     HospedagemFormComponent,
+    HotelUpdateComponent,
+    HospedeUpdateComponent,
+    ConfirmDeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +63,13 @@ import { HospedagemFormComponent } from './component/view/hospedagem/hospedagem-
     MatSidenavModule,
     MatCardModule,
     MatListModule,
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

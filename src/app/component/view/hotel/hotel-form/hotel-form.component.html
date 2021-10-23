@@ -1,1 +1,22 @@
-<p>formulário hotel</p>
+<mat-card>
+    <mat-card-title>{{title}}</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="Nome do hotel" name="nmHotel" [(ngModel)]="hotel.nmHotel" type="text">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Endereço do hotel" name="endereco" [(ngModel)]="hotel.endereco" type="text">
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <input matInput placeholder="Quantidade de estrelas" name="qtdEstrelas" [(ngModel)]="hotel.qtdEstrelas"
+                min="0" max="5" type="number">
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+    <button mat-raised-button color="warn" routerLink="/hoteis/">Cancelar</button>
+
+</mat-card>
