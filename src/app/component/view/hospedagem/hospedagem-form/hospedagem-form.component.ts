@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Hospedagem } from 'src/app/model/hospedagem.model';
 import { HospedagemService } from 'src/app/service/hospedagem.service';
@@ -9,9 +10,9 @@ import { HospedagemService } from 'src/app/service/hospedagem.service';
   styleUrls: ['./hospedagem-form.component.scss'],
 })
 export class HospedagemFormComponent implements OnInit {
-  title: string = 'Cadastrar nova hospedagem';
+  public title: string = 'Cadastrar nova hospedagem';
 
-  hospedagem: Hospedagem = {
+  public hospedagem: Hospedagem = {
     dtCheckin: '',
     dtCheckout: '',
     idHospede: 0,
@@ -19,14 +20,27 @@ export class HospedagemFormComponent implements OnInit {
     idHospedagem: 0,
   };
 
+  public formulario: FormGroup;
+
   constructor(private service: HospedagemService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.formulario = new FormGroup({
+      dtCheckin: new FormControl(null, Validators.required),
+      dtCheckout: new FormControl(null, Validators.required),
+      idQuarto: new FormControl(null, Validators.required),
+      idHospede: new FormControl(null, Validators.required),
+    });
+  }
 
   salvar() {
-    this.service.create(this.hospedagem).subscribe(() => {
-      this.service.showMessage('Hospedagem cadastrada com sucesso!');
-      this.router.navigate(['/hospedagens']);
-    });
+    if (this.formulario.valid) {
+      this.service.create(this.formulario.value).subscribe(() => {
+        this.service.showMessage('Hospedagem cadastrada com sucesso!');
+        this.router.navigate(['/hospedagens']);
+      });
+    } else {
+      this.service.showMessage('Preencha corretamente os campos', true);
+    }
   }
 }

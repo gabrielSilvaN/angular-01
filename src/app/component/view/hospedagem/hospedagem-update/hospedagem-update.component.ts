@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Hospedagem } from 'src/app/model/hospedagem.model';
 import { HospedagemService } from 'src/app/service/hospedagem.service';
-import { HotelService } from 'src/app/service/hotel.service';
 
 @Component({
   selector: 'app-hospedagem-update',
@@ -10,15 +10,17 @@ import { HotelService } from 'src/app/service/hotel.service';
   styleUrls: ['./../hospedagem-form/hospedagem-form.component.scss'],
 })
 export class HospedagemUpdateComponent implements OnInit {
-  title: string = 'Alterar dados da hospedagem';
+  public title: string = 'Alterar dados da hospedagem';
 
-  hospedagem: Hospedagem = {
+  public hospedagem: Hospedagem = {
     dtCheckin: '',
     dtCheckout: '',
     idHospede: 0,
     idQuarto: 0,
     idHospedagem: 0,
   };
+
+  public formulario: FormGroup;
 
   constructor(
     private service: HospedagemService,
@@ -33,12 +35,23 @@ export class HospedagemUpdateComponent implements OnInit {
         this.hospedagem = hospedagem;
       });
     }
+
+    this.formulario = new FormGroup({
+      dtCheckin: new FormControl(null, Validators.required),
+      dtCheckout: new FormControl(null, Validators.required),
+      idQuarto: new FormControl(null, Validators.required),
+      idHospede: new FormControl(null, Validators.required),
+    });
   }
 
   salvar() {
-    this.service.update(this.hospedagem).subscribe(() => {
-      this.service.showMessage('Hospedagem atualizada com sucesso!');
-      this.router.navigate(['/hospedagens']);
-    });
+    if (this.formulario.valid) {
+      this.service.update(this.formulario.value).subscribe(() => {
+        this.service.showMessage('Hospedagem atualizada com sucesso!');
+        this.router.navigate(['/hospedagens']);
+      });
+    } else {
+      this.service.showMessage('Preencha corretamente os campos', true);
+    }
   }
 }

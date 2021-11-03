@@ -1,28 +1,29 @@
 <mat-card>
     <mat-card-title>{{title}}</mat-card-title>
-    <form>
+    <form [formGroup]="formulario" (ngSubmit)="salvar()">
         <mat-form-field>
-            <input matInput placeholder="Data de checkin" name="dtCheckin" [(ngModel)]="hospedagem.dtCheckin"
-                type="text">
+            <input matInput placeholder="Data de checkin" formControlName="dtCheckin">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Data de checkout" name="dtCheckout" [(ngModel)]="hospedagem.dtCheckout"
-                type="text">
+            <input matInput placeholder="Data de checkout" formControlName="dtCheckout">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Id do hospede" name="idHospede" [(ngModel)]="hospedagem.idHospede"
-                type="number">
+            <input matInput placeholder="Id do hospede" formControlName="idHospede">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Id do quarto" name="idQuarto" [(ngModel)]="hospedagem.idQuarto" type="number">
+            <input matInput placeholder="Id do quarto" formControlName="idQuarto">
         </mat-form-field>
 
+
+        <div>
+            <button mat-raised-button color="primary" type="submit">Salvar</button>
+            <button mat-raised-button color="warn" routerLink="/hospedagens/" type="button">Cancelar</button>
+
+        </div>
     </form>
 
-    <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
-    <button mat-raised-button color="warn" routerLink="/hospedagens/">Cancelar</button>
 
 </mat-card>
