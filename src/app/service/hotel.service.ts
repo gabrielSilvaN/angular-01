@@ -16,8 +16,8 @@ export class HotelService {
     this.snackBar.open(message, 'Fechar', {
       verticalPosition: 'top',
       horizontalPosition: 'right',
-      duration: 3000,
-      panelClass: isError ? ['msg-error'] : ['msg-success'],
+      duration: 0,
+      panelClass: isError ? 'msg-error' : 'msg-success',
     });
   }
 

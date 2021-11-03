@@ -1,23 +1,23 @@
 <mat-card>
     <mat-card-title>{{title}}</mat-card-title>
-    <form>
+    <form [formGroup]="formulario" (ngSubmit)="salvar()">
         <mat-form-field>
-            <input matInput placeholder="Nome do hospede" name="nmHospede" [(ngModel)]="hospede.nmHospede" type="text">
+            <input matInput placeholder="Nome do hospede" formControlName="nmHospede">
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Data de nascimento" name="endereco" [(ngModel)]="hospede.dtNascimento"
-                type="text">
+            <input matInput placeholder="Data de nascimento" formControlName="dtNascimento">
         </mat-form-field>
 
 
         <mat-form-field>
-            <input matInput placeholder="CPF" name="qtdEstrelas" [(ngModel)]="hospede.cpf"
-                type="number">
+            <input matInput placeholder="CPF" formControlName="cpf">
         </mat-form-field>
+        <div>
+            <button mat-raised-button color="primary" type="submit">Salvar</button>
+            <button mat-raised-button color="warn" routerLink="/hospedes/" type="button">Cancelar</button>
+        </div>
     </form>
 
-    <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
-    <button mat-raised-button color="warn" routerLink="/hoteis/">Cancelar</button>
 
 </mat-card>

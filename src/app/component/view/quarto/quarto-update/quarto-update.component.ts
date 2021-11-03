@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriaQuarto } from 'src/app/enum/categoriaQuarto.enum';
 import { Hotel } from 'src/app/model/hotel.model';
 import { Quarto } from 'src/app/model/quarto.model';
@@ -7,12 +7,12 @@ import { HotelService } from 'src/app/service/hotel.service';
 import { QuartoService } from 'src/app/service/quarto.service';
 
 @Component({
-  selector: 'app-quarto-form',
-  templateUrl: './quarto-form.component.html',
-  styleUrls: ['./quarto-form.component.scss'],
+  selector: 'app-quarto-update',
+  templateUrl: './../quarto-form/quarto-form.component.html',
+  styleUrls: ['./../quarto-form/quarto-form.component.scss'],
 })
-export class QuartoFormComponent implements OnInit {
-  titulo: String = 'Cadastrar novo quarto';
+export class QuartoUpdateComponent implements OnInit {
+  titulo: String = 'Editar quarto';
 
   quarto: Quarto = {
     categoriaQuarto: CategoriaQuarto.PADRAO,
@@ -31,6 +31,7 @@ export class QuartoFormComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private service: QuartoService,
     private hotelService: HotelService
   ) {}
@@ -39,17 +40,18 @@ export class QuartoFormComponent implements OnInit {
     this.hotelService.findAll().subscribe((hoteis) => {
       this.hoteis = hoteis;
     });
-  }
 
+    let id = this.route.snapshot.paramMap.get('id');
+    if (id != null) {
+      this.service.findById(id).subscribe((quarto) => {
+        this.quarto = quarto;
+      });
+    }
+  }
   salvar(): void {
-    this.service.create(this.quarto).subscribe(
-      () => {
-        this.service.showMessage('Quarto cadastro com sucesso!');
-        this.router.navigate(['/quartos']);
-      },
-      (err) => {
-        this.service.showMessage('Não foi possível cadastrar quarto', true);
-      }
-    );
+    this.service.update(this.quarto).subscribe(() => {
+      this.service.showMessage('Quarto atualizado sucesso!');
+      this.router.navigate(['/quartos']);
+    });
   }
 }

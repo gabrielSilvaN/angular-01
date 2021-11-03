@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Hospede } from 'src/app/model/hospede.model';
 import { HospedeService } from 'src/app/service/hospede.service';
@@ -9,14 +10,16 @@ import { HospedeService } from 'src/app/service/hospede.service';
   styleUrls: ['./../hospede-form/hospede-form.component.scss'],
 })
 export class HospedeUpdateComponent implements OnInit {
-  title: string = 'Alterar dados do hospede';
+  public title: string = 'Alterar dados do hospede';
 
-  hospede: Hospede = {
+  public hospede: Hospede = {
     cpf: 0,
     dtNascimento: '',
     nmHospede: '',
     idHospede: 0,
   };
+
+  public formulario: FormGroup;
 
   constructor(
     private service: HospedeService,
@@ -31,12 +34,26 @@ export class HospedeUpdateComponent implements OnInit {
         this.hospede = hospede;
       });
     }
+
+    this.formulario = new FormGroup({
+      nmHospede: new FormControl(null, Validators.required),
+      dtNascimento: new FormControl(null, Validators.required),
+      cpf: new FormControl(null, [Validators.required]),
+    });
   }
 
   salvar() {
-    this.service.update(this.hospede).subscribe(() => {
-      this.service.showMessage('Hospede atualizado com sucesso!');
-      this.router.navigate(['/hospedes']);
-    });
+    this.service.update(this.hospede).subscribe(
+      () => {
+        this.service.showMessage('Hospede atualizado com sucesso!');
+        this.router.navigate(['/hospedes']);
+      },
+      (err) => {
+        this.service.showMessage(
+          'Não foi possível fazer o update do hospede',
+          true
+        );
+      }
+    );
   }
 }
