@@ -10,6 +10,7 @@ import { HospedeUpdateComponent } from './component/view/hospede/hospede-update/
 import { HotelFormComponent } from './component/view/hotel/hotel-form/hotel-form.component';
 import { HotelListComponent } from './component/view/hotel/hotel-list/hotel-list.component';
 import { HotelUpdateComponent } from './component/view/hotel/hotel-update/hotel-update.component';
+import { PaginadorComponent } from './component/view/paginador/paginador.component';
 import { QuartoFormComponent } from './component/view/quarto/quarto-form/quarto-form.component';
 import { QuartoListComponent } from './component/view/quarto/quarto-list/quarto-list.component';
 import { QuartoUpdateComponent } from './component/view/quarto/quarto-update/quarto-update.component';
@@ -31,6 +32,8 @@ const routes: Routes = [
   { path: 'hospedagens', component: HospedagemListComponent },
   { path: 'hospedagens/form', component: HospedagemFormComponent },
   { path: 'hospedagens/:id', component: HospedagemUpdateComponent },
+
+  {path: 'paginador', component: PaginadorComponent}
 ];
 
 @NgModule({

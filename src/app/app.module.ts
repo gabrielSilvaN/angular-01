@@ -35,6 +35,10 @@ import { QuartoFormComponent } from './component/view/quarto/quarto-form/quarto-
 import { QuartoListComponent } from './component/view/quarto/quarto-list/quarto-list.component';
 import { QuartoUpdateComponent } from './component/view/quarto/quarto-update/quarto-update.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaginadorComponent } from './component/view/paginador/paginador.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -56,6 +60,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ConfirmDeleteComponent,
     HospedagemUpdateComponent,
     QuartoUpdateComponent,
+    PaginadorComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

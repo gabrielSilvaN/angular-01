@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SortDirection } from '@angular/material/sort';
 import { Observable } from 'rxjs';
+// import { HotelApi } from '../component/view/paginador/paginador.component';
 import { Hotel } from '../model/hotel.model';
 
 @Injectable({
@@ -24,6 +26,20 @@ export class HotelService {
   create(hotel: Hotel): Observable<Hotel> {
     return this.http.post<Hotel>(this.baseUrl, hotel);
   }
+
+  // findPaginator(
+  //   sort: string,
+  //   order: SortDirection,
+  //   page: number,
+  //   size: number
+  // ): Observable<HotelApi> {
+  //   //?sort=${sort}&order=${order}&page=${page + 1}
+  //   let requestUrl = `${this.baseUrl}/paginator/?page=${page}&size=${size}`;
+  //   //&sort=${sort}&order=${order}
+
+  //   requestUrl += order == 'desc' ? '&sort=' + sort : '&unsort=' + sort;
+  //   return this.http.get<HotelApi>(requestUrl);
+  // }
 
   findAll(): Observable<Hotel[]> {
     return this.http.get<Hotel[]>(`${this.baseUrl}`);

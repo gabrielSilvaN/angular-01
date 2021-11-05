@@ -1,0 +1,64 @@
+<div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+  <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+    GitHub's API rate limit has been reached. It will be reset in one minute.
+  </div>
+</div>
+
+<mat-card class="example-card mat-elevation-z3">
+  <button mat-button color="primary" class="botton_new" routerLink="/hospedes/form">Novo Hóspede</button>
+  <mat-card-header>
+    <mat-card-title>Hóspedes</mat-card-title>
+    <mat-card-subtitle>Lista de hóspedes Cadastrados</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <table mat-table [dataSource]="hospedes" class="mat-elevation-z8" matSort matSortActive="nmHospede"
+      matSortDisableClear matSortDirection="desc">
+
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> #ID </th>
+        <td mat-cell *matCellDef="let hospede"> {{hospede.idHospede}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="nmHospede">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear> Nome </th>
+        <td mat-cell *matCellDef="let hospede"> {{hospede.nmHospede}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="dtNascimento">
+        <th mat-header-cell *matHeaderCellDef> Data nascimento </th>
+        <td mat-cell *matCellDef="let hospede"> {{hospede.dtNascimento}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="cpf">
+        <th mat-header-cell *matHeaderCellDef> CPF </th>
+        <td mat-cell *matCellDef="let hospede"> {{hospede.cpf}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef>Acões </th>
+        <td mat-cell *matCellDef="let hospede">
+          <a routerLink="/hospedes/{{hospede.idHospede}}" class="edit">
+            <button mat-raised-button color="primary"><i class="material-icons">edit</i></button>
+          </a>
+          <a>
+            <button mat-raised-button color="warn" (click)="excluir(hospede)"><i
+                class="material-icons">delete</i></button>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [length]="resultsLength" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Seleciona a página para retornar os hóspedes"></mat-paginator>
+
+  </mat-card-content>
+</mat-card>

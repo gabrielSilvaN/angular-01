@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SortDirection } from '@angular/material/sort';
 import { Observable } from 'rxjs';
 import { Hospedagem } from '../model/hospedagem.model';
 
@@ -20,6 +21,20 @@ export class HospedagemService {
       panelClass: isError ? ['msg-error'] : ['msg-success'],
     });
   }
+
+  // findPaginator(
+  //   sort: string,
+  //   order: SortDirection,
+  //   page: number,
+  //   size: number
+  // ): Observable<HospedagemApi> {
+  //   //?sort=${sort}&order=${order}&page=${page + 1}
+  //   let requestUrl = `${this.baseUrl}/paginator/?page=${page}&size=${size}`;
+  //   //&sort=${sort}&order=${order}
+
+  //   requestUrl += order == 'desc' ? '&sort=' + sort : '&unsort=' + sort;
+  //   return this.http.get<HospedagemApi>(requestUrl);
+  // }
 
   create(hospedagem: Hospedagem): Observable<Hospedagem> {
     return this.http.post<Hospedagem>(this.baseUrl, hospedagem);
